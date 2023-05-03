@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Mindscape.Raygun4Maui;
 
 namespace mauitests;
 
@@ -20,6 +21,10 @@ public static class MauiProgram
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                })
+                .ConfigureServices(services =>
+                {
+                    services.AddRaygunCrashReporting(configuration.GetSection("RaygunMauiSettings"));
                 });
 #if DEBUG
         builder.Logging.AddDebug();
