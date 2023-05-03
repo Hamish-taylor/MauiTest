@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Raygun4Maui;
 
 namespace mauitests;
 
@@ -24,6 +25,8 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+
+        builder.AddRaygun4Maui("paste_your_api_key_here");
 
         return builder.Build();
     }
