@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Mindscape.Raygun4Maui;
 
 namespace mauitests;
 
@@ -24,6 +25,8 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+
+        builder.Logging.AddRaygun4Maui(configuration.GetSection("RaygunSettings"));
 
         return builder.Build();
     }
