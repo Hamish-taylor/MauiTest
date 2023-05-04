@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Raygun4Maui;
 
 namespace mauitests;
 
@@ -24,6 +25,14 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+
+        // Add Raygun4Maui module and attach RaygunClient
+        builder.Services.AddRaygun();
+        builder.Services.Configure<RaygunSettings>(settings =>
+        {
+            settings.ApiKey = "YOUR_API_KEY_HERE";
+        });
+        builder.Services.BuildServiceProvider().GetRequiredService<RaygunClient>();
 
         return builder.Build();
     }
